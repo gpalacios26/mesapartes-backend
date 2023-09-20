@@ -48,7 +48,7 @@ public class SolicitudController {
 	@GetMapping
 	public ResponseEntity<List<Solicitud>> toList() throws Exception {
 		List<Solicitud> lista = service.listar();
-		return new ResponseEntity<List<Solicitud>>(lista, HttpStatus.OK);
+		return new ResponseEntity<>(lista, HttpStatus.OK);
 	}
 
 	@Operation(summary = "Registrar solicitud")
@@ -62,7 +62,7 @@ public class SolicitudController {
 		UUID uuid = UUID.randomUUID();
 		data.setUuid(uuid);
 		Solicitud obj = service.registrar(data);
-		return new ResponseEntity<Solicitud>(obj, HttpStatus.CREATED);
+		return new ResponseEntity<>(obj, HttpStatus.CREATED);
 	}
 
 	@Operation(summary = "Enviar correo de notificación")
@@ -91,7 +91,7 @@ public class SolicitudController {
 			rpta = true;
 		}
 
-		return new ResponseEntity<Boolean>(rpta, HttpStatus.OK);
+		return new ResponseEntity<>(rpta, HttpStatus.OK);
 	}
 
 }

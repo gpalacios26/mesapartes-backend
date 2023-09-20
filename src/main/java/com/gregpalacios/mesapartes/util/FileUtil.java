@@ -26,11 +26,10 @@ public class FileUtil {
 		Path path = Paths.get(filePath);
 		Files.createFile(path);
 
-		OutputStream out = new FileOutputStream(filePath);
-		out.write(archivoByte);
-		out.close();
-
-		return fileNameUniq;
+		try (OutputStream out = new FileOutputStream(filePath);) {
+			out.write(archivoByte);
+			return fileNameUniq;
+		}
 	}
 
 	public static String createFileFromBase64(FileDTO fileDTO) throws IOException {
@@ -43,10 +42,9 @@ public class FileUtil {
 
 		File file = new File(filePath);
 
-		OutputStream out = new FileOutputStream(file);
-		out.write(archivoBytes);
-		out.close();
-
-		return fileNameUniq;
+		try (OutputStream out = new FileOutputStream(file);) {
+			out.write(archivoBytes);
+			return fileNameUniq;
+		}
 	}
 }
